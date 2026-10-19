@@ -37,14 +37,12 @@
   - [Step 5 · 安装 agents（2 个只读审计子代理）](#step-5--安装-agents2-个只读审计子代理)
   - [Step 6 · 安装 hooks（2 个钩子脚本）](#step-6--安装-hooks2-个钩子脚本)
   - [Step 7 · 配置 cli/config.json（hooks 注册 + MCP + 插件）](#step-7--配置-cliconfigjsonhooks-注册--mcp--插件)
-  - [Step 8 · （可选）v2/setting.json 桌面端偏好](#step-8--可选v2settingjson-桌面端偏好)
-  - [Step 9 · 重启并验证](#step-9--重启并验证)
+  - [Step 8 · 重启并验证](#step-8--重启并验证)
 - [🧩 Skills 使用详解（怎么触发、怎么用）](#-skills-使用详解怎么触发怎么用)
 - [🪝 Hooks 详解](#-hooks-详解)
 - [🔌 MCP 服务器详解](#-mcp-服务器详解)
 - [👥 自定义 Agents 详解](#-自定义-agents-详解)
 - [📜 Rules 规则速查表](#-rules-规则速查表)
-- [🔄 scripts/sync-codex-to-zcode.py 同步脚本](#-scriptssync-codex-to-zcodepy-同步脚本)
 - [❓ FAQ 故障排查](#-faq-故障排查)
 - [🔐 安全与隐私](#-安全与隐私)
 - [✅ 迁移完成检查清单](#-迁移完成检查清单)
@@ -90,15 +88,8 @@ zcode-si/
 │   ├── guard-config-edit.js         #    PreToolUse：application*.yml 编辑前阻断
 │   └── vue-parse-check.js           #    PostToolUse：前端源码编辑后语法解析校验
 │
-├── cli/
-│   └── config.json                  # ⚙️ ZCode CLI 层配置：hooks 注册 + MCP 服务器 + 插件
-│
-├── v2/
-│   └── setting.json                 # 🖥️ ZCode 桌面端 UI 偏好（含个人隐私字段，见 [安全] 节）
-│
-└── scripts/
-    ├── sync-codex-to-zcode.py       # 🔄 作者自用：Codex → ZCode 用户级配置每日同步
-    └── sync-mcp-state.json          #    同步脚本的 MCP 管理状态
+└── cli/
+    └── config.json                  # ⚙️ ZCode CLI 层配置：hooks 注册 + MCP 服务器 + 插件
 ```
 
 > [!TIP]
@@ -112,7 +103,6 @@ zcode-si/
 |------|------|--------|------|
 | 🖥️ **ZCode 桌面版** | 运行本配置的主体 | ✅ 必需 | 从官方渠道安装最新版 |
 | 🟢 **Node.js（建议 LTS ≥ 20）** | hooks 脚本执行 + MCP 服务器经 `npx` 启动 | ✅ 必需 | 安装后 `node -v`、`npx -v` 均可用 |
-| 🐍 **Python ≥ 3.11** | 仅 `scripts/sync-codex-to-zcode.py` 使用（依赖 `tomllib`） | ⭕ 可选 | 不用该同步脚本可忽略 |
 | 🔧 **Git** | 克隆本仓库 | ✅ 必需 | Git Bash 环境执行下述命令最顺 |
 
 > [!IMPORTANT]
@@ -132,7 +122,6 @@ zcode-si/
 | `agents/*.md` | `~/.zcode/agents/` |
 | `hooks/*.js` | `~/.zcode/hooks/` |
 | `cli/config.json` | 合并进 `~/.zcode/cli/config.json`（**不能整文件覆盖！**） |
-| `v2/setting.json` | 参考合并 `~/.zcode/v2/setting.json`（**含隐私，见说明**） |
 
 ---
 
@@ -170,7 +159,6 @@ zcode-si/
 4. 仓库 agents/*.md（2 个）  → ~/.zcode/agents/
 5. 仓库 hooks/*.js（2 个）   → ~/.zcode/hooks/
 6. 仓库 cli/config.json      → 合并进 ~/.zcode/cli/config.json（见合并规则）
-7. 仓库 v2/setting.json      → 仅作参考，默认不迁移（含隐私字段）
 
 【硬性规则】
 A. 动手前先备份：把 ~/.zcode/cli/config.json 复制为 config.json.bak-<日期>；
@@ -187,14 +175,8 @@ C. hooks 注册的 command 里的脚本绝对路径必须改写为我的用户�
 D. plugins.enabledPlugins 中 "tc-experts@dev-tc-experts" 来自作者私有
    marketplace，我这里没有该源，请置为 false 或删除该行；其余三个官方
    插件（computer-use / github / claude-md-management）保留为 true。
-E. v2/setting.json 默认跳过；如我明确要求迁移桌面端偏好，只提取
-   locale、terminalFontFamily、embeddedBrowserViewportPreference、
-   messageStream*、toolGrouping*、closeToTrayOnWindows、
-   keepAwakeWhileRunning、desktopZoomLevel 等纯 UI 字段，绝不迁移
-   recentProjects、lastWorkspaceSession、webRemoteControlExternalRelayDevice、
-   providerFamily* 等含个人路径 / 设备标识 / 账号信息的字段。
-F. 全程不要执行任何 git 写操作（commit / push / branch 等），只读克隆即可。
-G. 每一步完成后输出简短进度：已完成项 / 阻塞项 / 下一步。
+E. 全程不要执行任何 git 写操作（commit / push / branch 等），只读克隆即可。
+F. 每一步完成后输出简短进度：已完成项 / 阻塞项 / 下一步。
 
 【完成后的验证清单】（逐项执行并报告结果）
 1. ls 列出 ~/.zcode/ 下 AGENTS.md、rules（11 个 md）、skills（8 个目录）、
@@ -208,7 +190,7 @@ G. 每一步完成后输出简短进度：已完成项 / 阻塞项 / 下一步�
 ```
 
 > [!NOTE]
-> 模板中的规则 A–G 与验证清单来自作者的实际踩坑经验：**JSON 整文件覆盖**会丢掉 ZCode 自身的运行时字段；**忘记改 hooks 路径**会让两个钩子静默失效；**tc-experts 插件**没有公开 marketplace 源。AI 按模板执行即可避开全部三个坑。
+> 模板中的规则 A–F 与验证清单来自作者的实际踩坑经验：**JSON 整文件覆盖**会丢掉 ZCode 自身的运行时字段；**忘记改 hooks 路径**会让两个钩子静默失效；**tc-experts 插件**没有公开 marketplace 源。AI 按模板执行即可避开全部三个坑。
 
 ---
 
@@ -375,27 +357,7 @@ print(f"OK → {target}（已备份 .migrate-bak）")
 > [!WARNING]
 > hooks 的 `command` 使用**正斜杠**绝对路径（`C:/Users/xxx/...`）且由 `node` 显式调用——这是作者在 Windows 下验证过的可靠写法，合并时不要改成反斜杠或相对路径。
 
-### Step 8 · （可选）v2/setting.json 桌面端偏好
-
-> [!CAUTION]
-> `v2/setting.json` 含**个人隐私字段**：`recentProjects`（本机项目路径）、`lastWorkspaceSession`（最近工作区）、`webRemoteControlExternalRelayDevice`（远程控制设备标识）、`providerFamily*`（模型服务连接信息）。**不建议整文件迁移。**
-
-推荐做法：只参考它调整 ZCode 的 **Settings 界面**里的同款偏好（界面操作最安全）：
-
-| 字段 | 含义 | 建议值 |
-|------|------|--------|
-| `locale` / `localePreference` | 界面语言 | `zh-CN` |
-| `terminalFontFamily` | 内置终端字体 | `AnthropicMono Medium`（你本机需装有该字体） |
-| `terminalInheritSystemProfile` | 终端继承系统 profile | `true` |
-| `messageStreamShowTodos` | 显示任务清单 | `true` |
-| `toolGroupingExploreEnabled` / `toolGroupingTerminalEnabled` | 工具调用分组折叠 | `true` |
-| `closeToTrayOnWindows` | 关窗最小化到托盘 | `true` |
-| `keepAwakeWhileRunning` | 任务运行时阻止休眠 | `true` |
-| `embeddedBrowserViewportPreference` | 内置浏览器视口 | 980×580 responsive |
-
-在 ZCode 设置界面手动对齐即可；确要 JSON 合并的，只挑上表字段，其余一律不动。
-
-### Step 9 · 重启并验证
+### Step 8 · 重启并验证
 
 完全退出 ZCode（含托盘图标）后重新启动，逐项检查：
 
@@ -554,25 +516,6 @@ print(f"OK → {target}（已备份 .migrate-bak）")
 
 ---
 
-## 🔄 scripts/sync-codex-to-zcode.py 同步脚本
-
-> [!NOTE]
-> 这是**作者个人工作流**：作者的规则源头维护在 `~/.codex`（Codex CLI 配置），此脚本每日把 AGENTS.md / rules / skills / hooks / agents / MCP **单向同步**到 `~/.zcode`，并内置 Codex → ZCode 的语义适配（路径改写、「自动加载」表述适配、TOML → Markdown agents 转换、MCP 状态管理等）。
-
-**接收者是否需要它？**
-
-- ❌ 如果你只用 ZCode、不维护 Codex 源配置 → **不需要**，本 README 的手动迁移已覆盖一切
-- ✅ 如果你也同时使用 Codex 并希望两边规则同步 → 可以参考 / 使用该脚本：
-  ```bash
-  # 依赖：Python ≥ 3.11（tomllib）；且本机存在 ~/.codex 配置
-  python scripts/sync-codex-to-zcode.py
-  ```
-- 📖 脚本头部有完整的适配逻辑文档（跳过 Codex 专有特性、mtime 较新者胜出、`.sync-bak` 备份策略等），可当「Codex ↔ ZCode 配置差异」的参考读物
-
-`scripts/sync-mcp-state.json` 是该脚本的 MCP 管理状态文件（记录哪些 server 由 Codex 源托管），随脚本一起使用。
-
----
-
 ## ❓ FAQ 故障排查
 
 <details>
@@ -630,7 +573,6 @@ print(f"OK → {target}（已备份 .migrate-bak）")
 
 ## 🔐 安全与隐私
 
-- 🔒 `v2/setting.json` **不要**原样分享或整文件迁移（含本机路径、设备标识、服务连接信息），详情见 Step 8
 - 🚫 `AGENTS.md` 与 `rules/version-control.md` 强制 **Git 只读白名单**：AI 不允许执行任何 Git 写操作（commit / push / branch 变更），变更一律留在工作区由你决定提交与否——这是有意为之的安全设计
 - 🛡️ `guard-config-edit.js` 会拦截 `application*.yml` 编辑，防止 AI 擅自改动含数据源密码的配置
 - 🧹 本仓库**不包含**任何 API Key / token；模型服务的登录凭据由 ZCode 自身的账号体系管理，不随配置迁移
@@ -649,8 +591,7 @@ print(f"OK → {target}（已备份 .migrate-bak）")
 - [ ] `cli/config.json` 已**合并**（非覆盖）hooks / mcp / plugins 三段，JSON 可解析
 - [ ] hooks `command` 路径已改为**你的用户目录**
 - [ ] `tc-experts@dev-tc-experts` 已置 `false`
-- [ ] `v2/setting.json` 仅参考 UI 偏好，未整文件覆盖
-- [ ] 重启 ZCode 后 Step 9 的 8 项验证全部通过
+- [ ] 重启 ZCode 后 Step 8 的 8 项验证全部通过
 
 全部打勾后，这套配置在新机器上与作者环境完全等价 🎉
 
