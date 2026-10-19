@@ -1,0 +1,75 @@
+{
+  "hooks": {
+    "enabled": true,
+    "events": {
+      "PreToolUse": [
+        {
+          "matcher": "Edit|Write|MultiEdit",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "node \"C:/Users/caixi/.zcode/hooks/guard-config-edit.js\""
+            }
+          ]
+        }
+      ],
+      "PostToolUse": [
+        {
+          "matcher": "Edit|Write|MultiEdit",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "node \"C:/Users/caixi/.zcode/hooks/vue-parse-check.js\""
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "mcp": {
+    "servers": {
+      "chrome-devtools": {
+        "type": "stdio",
+        "command": "npx",
+        "args": [
+          "chrome-devtools-mcp@latest",
+          "--autoConnect"
+        ]
+      },
+      "context7": {
+        "type": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@upstash/context7-mcp"
+        ]
+      },
+      "sequentialthinking": {
+        "type": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-sequential-thinking"
+        ]
+      },
+      "rea": {
+        "type": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "rea-agents@6.4.0",
+          "mcp"
+        ]
+      }
+    }
+  },
+  "plugins": {
+    "enabledPlugins": {
+      "computer-use@zcode-plugins-official": true,
+      "github@zcode-plugins-official": true,
+      "claude-md-management@claude-plugins-official": true,
+      "tc-experts@dev-tc-experts": true
+    },
+    "options": {}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "teach-me-skill",
+  "version": "1.1.0",
+  "description": "A cross-platform agent skill (Claude Code, ZCode, Codex, Cursor, etc.) that transforms AI from a code generator into a mentor who teaches while doing — ideal for project-driven learning",
+  "keywords": [
+    "agent-skill",
+    "skill",
+    "claude-code",
+    "zcode",
+    "codex",
+    "cursor",
+    "learning",
+    "teach",
+    "mentor",
+    "project-driven-learning",
+    "ai-education"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Orange0618/teach-me-skill"
+  },
+  "license": "MIT",
+  "bin": {
+    "teach-me-skill": "./install.js"
+  },
+  "files": [
+    "install.js",
+    "SKILL.md"
+  ]
+}

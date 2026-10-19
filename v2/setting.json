@@ -1,0 +1,105 @@
+{
+  "modelProviderFamilyModes": {
+    "zai": "oauth"
+  },
+  "modelProviderFamilySelectedKeys": {
+    "zai": "coding-plan:builtin:zai-coding-plan"
+  },
+  "recentProjects": [
+    "F:\\BCode",
+    "F:\\mailinabox",
+    "F:\\maildev",
+    "F:\\email",
+    "F:\\smtppool-2.3.0",
+    "F:\\bp-lims",
+    "D:\\protable\\frp_0.65.0",
+    "D:\\protable\\nginx-1.31.4",
+    "D:\\protable\\high-speed-scanner",
+    "F:\\caixibei"
+  ],
+  "locale": "zh-CN",
+  "localePreference": "zh-CN",
+  "terminalInheritSystemProfile": true,
+  "terminalFontFamily": "AnthropicMono Medium",
+  "embeddedBrowserAllowInsecureCertificates": true,
+  "embeddedBrowserViewportPreference": {
+    "mode": "responsive",
+    "viewport": {
+      "width": 980,
+      "height": 580
+    },
+    "zoom": "fit"
+  },
+  "computerUseComposerEntryHidden": false,
+  "taskAutoArchiveEnabled": false,
+  "taskAutoArchiveOlderThanDays": 30,
+  "closeToTrayOnWindows": true,
+  "closeToTrayOnWindowsMigrationInitialized": true,
+  "keepAwakeWhileRunning": true,
+  "desktopZoomLevel": 0,
+  "desktopWindowSize": {
+    "width": 1918,
+    "height": 1030,
+    "maximized": false
+  },
+  "desktopChromiumHardwareAccelerationEnabled": true,
+  "messageStreamShowReasoning": false,
+  "messageStreamShowReasoningMigrationInitialized": true,
+  "messageStreamShowTodos": true,
+  "toolGroupingExploreEnabled": true,
+  "toolGroupingTerminalEnabled": true,
+  "toolGroupingChangesEnabled": false,
+  "zcodeInteractionBehavior": "guide",
+  "askUserQuestionAutoResolutionEnabled": true,
+  "modelIoFullRetentionEnabled": false,
+  "enabledBuiltinAgentCliProviders": [
+    "glm"
+  ],
+  "startPlanRecommendationDismissed": false,
+  "providerFamilyConnectionSelections": {
+    "zai": {
+      "kind": "individual-coding-plan"
+    }
+  },
+  "providerFamilyDomain": "zai",
+  "providerFamilyDomainUpdatedAt": 1788931897800,
+  "providerFamilyDomainMigrated": true,
+  "nativeSearchEnhancementsEnabled": true,
+  "onboardingOccupation": "other",
+  "proactiveSuggestionsEnabled": false,
+  "memoryEnabled": false,
+  "lastWorkspaceSession": [
+    {
+      "kind": "local",
+      "workspacePath": "D:\\protable\\zcode-modkit\\zcode-modkit",
+      "workspacePurpose": "project"
+    },
+    {
+      "kind": "local",
+      "workspacePath": "F:\\bp-lims",
+      "workspacePurpose": "project"
+    },
+    {
+      "kind": "local",
+      "workspacePath": "E:\\20260915_agent-settings\\agent_settings",
+      "workspacePurpose": "project"
+    },
+    {
+      "kind": "local",
+      "workspacePath": "C:\\Users\\caixi\\.zcode\\workspace\\default",
+      "workspacePurpose": "conversation"
+    }
+  ],
+  "lastActiveTabIndex": 2,
+  "receivePreviewUpdates": false,
+  "autoDownloadAndInstallUpdates": false,
+  "skippedElectronUpdateVersions": {},
+  "settingsSyncFirstRunPromptHandled": true,
+  "webRemoteControlExternalRelayDevice": {
+    "deviceSid": "d_FSQM6xi2mncZBeBthStt7z"
+  },
+  "webRemoteControlLastEnabledContext": {
+    "workspacePath": "F:\\bp-lims",
+    "initialTaskId": "sess_0f1f76f5-2782-4df0-ab39-e54bf68a5b4a"
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--
+  ui-design 技能 · 原型模板
+  用法：复制本文件到 docs/ui-prototypes/{页面名}-{日期}.html，在副本上改。
+  默认接 Element UI 2.15（hussar-front）。目标前端是 Element Plus 或 Vant 时见文末「切换前端」。
+
+  设计令牌：从目标页面/主题变量提取真实值填入 :root 的 CSS 变量，禁止凭感觉填。
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{页面名} · 设计原型</title>
+  <!-- Element UI 2.15 + Vue 2 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.14/lib/theme-chalk/index.css">
+  <script src="https://unpkg.com/vue@2.7.16/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui@2.15.14/lib/index.js"></script>
+  <style>
+    /* 设计令牌：从系统真实样式提取后填入，每个值要能追溯到现有页面或主题变量 */
+    :root {
+      --color-primary: #409EFF;      /* 替换为项目主题色 */
+      --color-success: #67C23A;
+      --color-warning: #E6A23C;
+      --color-danger:  #F56C6C;
+      --font-size-title: 16px;
+      --font-size-body:  14px;
+      --space-4: 4px;  --space-8: 8px;  --space-12: 12px;
+      --space-16: 16px; --space-24: 24px; --space-32: 32px;
+      --table-header-bg: #fafafa;
+      --border-color: #ebeef5;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: -apple-system, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: var(--font-size-body);
+      color: #303133;
+      background: #f0f2f5;
+    }
+
+    /* LIMS 标准页结构：父容器 flex column -> 查询区（内容撑高）+ 表格区（flex:1） */
+    .bp-page {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: var(--space-16);
+      gap: var(--space-16);
+    }
+    .bp-query {
+      background: #fff;
+      padding: var(--space-16) var(--space-16) 0;
+      border-radius: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8) var(--space-16);
+      align-items: center;
+    }
+    .bp-query .bp-actions {
+      margin-left: auto;          /* 按钮组靠右，不参与宽度均分 */
+      display: flex;
+      gap: var(--space-8);
+    }
+    .bp-table {
+      flex: 1;
+      overflow: auto;
+      background: #fff;
+      border-radius: 4px;
+      padding: var(--space-16);
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="bp-page">
+    <!-- 查询区：字段换行，按钮组靠右 -->
+    <div class="bp-query">
+      <el-input v-model="form.keyword" placeholder="关键词" style="width:200px"></el-input>
+      <el-select v-model="form.status" placeholder="状态" style="width:160px">
+        <el-option label="全部" value=""></el-option>
+        <el-option label="启用" value="1"></el-option>
+        <el-option label="停用" value="0"></el-option>
+      </el-select>
+      <el-date-picker v-model="form.date" type="daterange" placeholder="日期范围"></el-date-picker>
+      <div class="bp-actions">
+        <el-button type="primary">查询</el-button>
+        <el-button>重置</el-button>
+        <el-button>导出</el-button>
+      </div>
+    </div>
+
+    <!-- 表格区：占满剩余高度 -->
+    <div class="bp-table">
+      <el-table :data="tableData" border style="width:100%" height="100%">
+        <el-table-column type="index" label="序号" width="60"></el-table-column>
+        <el-table-column prop="code" label="编号" width="140"></el-table-column>
+        <el-table-column prop="name" label="名称"></el-table-column>
+        <el-table-column prop="status" label="状态" width="100"></el-table-column>
+        <el-table-column label="操作" width="180">
+          <template slot-scope="scope">
+            <el-button type="text">编辑</el-button>
+            <el-button type="text">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-pagination
+        style="margin-top:16px; text-align:right"
+        layout="total, prev, pager, next, jumper"
+        :total="120">
+      </el-pagination>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          form: { keyword: '', status: '', date: '' },
+          // 真实数据模拟：替换为目标页面的字段和样本数据
+          tableData: [
+            { code: 'WW-001', name: '示例记录一', status: '启用' },
+            { code: 'WW-002', name: '示例记录二', status: '停用' }
+          ]
+        };
+      }
+    });
+  </script>
+
+  <!--
+  切换前端：
+  · Element Plus（eln-microapp）：把 CDN 换成 element-plus@2 + vue@3，组件标签名基本兼容，
+    组件注册和挂载方式按 Vue 3 改（createApp + app.use(ElementPlus)）。
+  · Vant（hussar-mobile/-wx）：换成 vant@4 + vue@3，布局改为移动端单列，
+    查询区用 van-search，列表用 van-list，间距体系按移动端 8/12/16 重新取值。
+  -->
+</html>
