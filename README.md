@@ -16,7 +16,7 @@
 </div>
 
 > [!NOTE]
-> 本仓库是 [ZCode](https://zcode.dev)（AI 编码桌面助手）的**用户级配置备份**，包含全局协作准则 `AGENTS.md`、11 个 `rules` 专项规则、8 个 `skills` 技能、2 个只读审计 `agents`、2 个 `hooks` 钩子、4 个 `MCP` 服务器与插件配置，以及作者日常使用的 Codex → ZCode 同步脚本。
+> 本仓库是 [ZCode](https://zcode.dev)（AI 编码桌面助手）的**用户级配置备份**，包含全局协作准则 `AGENTS.md`、11 个 `rules` 专项规则、8 个 `skills` 技能、2 个只读审计 `agents`、2 个 `hooks` 钩子，以及 4 个 `MCP` 服务器与插件配置。
 >
 > 无论你是**手动迁移**，还是把本 README 丢给 **Claude / ChatGPT / Cursor / ZCode 自己**，按本文步骤执行，都可以在新机器上完整复现这套配置。
 
@@ -73,7 +73,7 @@ zcode-si/
 ├── skills/                          # 🧩 8 个技能（每个目录含 SKILL.md + frontmatter）
 │   ├── archify/                     #    架构图 / 流程图 / 时序图生成器
 │   ├── deep-brainstorming/          #    深度头脑风暴
-│   ├── init-project/                #    项目初始化（生成 AGENTS.md / CLAUDE.md）
+│   ├── init-project/                #    项目初始化（生成 AGENTS.md 等项目指令文件）
 │   ├── multi-end-align/             #    多端业务一致性对齐核验
 │   ├── rules-doc-reviewer/          #    规则文档审查与优化
 │   ├── shuorenhua/                  #    去 AI 味 / 审稿润色
@@ -403,7 +403,7 @@ print(f"OK → {target}（已备份 .migrate-bak）")
 
 ### 🏗️ init-project — 项目初始化（显式触发）
 
-**用途**：扫描当前仓库，生成或刷新**项目级** `AGENTS.md` / `CLAUDE.md`（技术栈、目录结构、入口文件、构建命令）。
+**用途**：扫描当前仓库，生成或刷新**项目级** `AGENTS.md`（或项目既有的等价 agent 指令文件），沉淀技术栈、目录结构、入口文件、构建命令等高频事实。
 
 **触发方式**：输入 `/init`，或说「帮我初始化这个项目的 agent 指令文件」。
 💡 与用户级 `~/.zcode/AGENTS.md` 是互补关系：用户级管「怎么协作」，项目级管「这个项目的事实」。

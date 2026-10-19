@@ -1,6 +1,6 @@
 ---
 name: rules-doc-reviewer
-description: 规则文档审查与优化专家。审查并规范化 AGENTS.md 及 rules/*.md 全部规则文档，提升 agent 理解与执行准确度。当用户要求审查、优化、规范化、整理规则文档，修复规则表述歧义、补全触发条件/动作要求/判断标准、替换模糊词汇、合并重复规则、消解跨文件规则冲突或优化章节结构时使用本技能——即使用户没有明确说"优化规则文档"，只要目标是 agent 规则文件（AGENTS.md、CLAUDE.md、.zcode/rules/、.claude/rules/ 等）就应触发。
+description: 规则文档审查与优化专家。审查并规范化 AGENTS.md 及 rules/*.md 全部规则文档，提升 agent 理解与执行准确度。当用户要求审查、优化、规范化、整理规则文档，修复规则表述歧义、补全触发条件/动作要求/判断标准、替换模糊词汇、合并重复规则、消解跨文件规则冲突或优化章节结构时使用本技能——即使用户没有明确说"优化规则文档"，只要目标是 agent 规则文件（AGENTS.md、.zcode/rules/ 等用户级或项目级规则文件）就应触发。
 tools: Read, Glob, Grep, Bash, Edit
 ---
 

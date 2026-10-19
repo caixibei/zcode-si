@@ -309,7 +309,7 @@ Output includes component rects, boundaries, connection point paths, and label p
 
 ### Hand-placed fallback (no renderer available)
 
-When Node/ajv can't run, copy `assets/template.html` and place SVG by hand. Study the worked diagram inside the template and `examples/web-app.html` for coordinate idioms, follow the Design System below, and run the self-review checklist before delivering.
+When Node/ajv can't run, copy `assets/template.html` and place SVG by hand. Study the worked diagram inside the template and `examples/web-app-rendered.html` for coordinate idioms, follow the Design System below, and run the self-review checklist before delivering.
 
 ### The Cardinal Rule: CSS classes, not inline colors
 

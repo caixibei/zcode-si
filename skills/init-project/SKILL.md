@@ -1,27 +1,27 @@
 ---
 name: init-project
-description: Use when a user asks to initialize project context, create or refresh a project agent instruction file (AGENTS.md / CLAUDE.md), document a repository's stack and entry points, or invokes /init.
+description: Use when a user asks to initialize project context, create or refresh a project agent instruction file (AGENTS.md or equivalent), document a repository's stack and entry points, or invokes /init.
 license: MIT
 author: 蔡熙贝
 ---
 
 # 初始化项目上下文
 
-提取日常开发最常用的项目事实，生成或更新项目根目录的 agent 指令文件。文件名跨平台通用：默认 `AGENTS.md`（ZCode、Codex 等通用标准），项目已有 `CLAUDE.md` 等既有命名时沿用既有文件。它是高频上下文索引，不是企业规范手册、排查流程集合或业务知识库。
+提取日常开发最常用的项目事实，生成或更新项目根目录的 agent 指令文件。文件名以项目现状为准：默认 `AGENTS.md`，项目已有其他等价指令文件命名时沿用既有文件。它是高频上下文索引，不是企业规范手册、排查流程集合或业务知识库。
 
 ## 触发与排除
 
-适用于创建、审查或更新项目根目录的 agent 指令文件（`AGENTS.md` / `CLAUDE.md` 等任一命名）。
+适用于创建、审查或更新项目根目录的 agent 指令文件（`AGENTS.md` 或项目实际采用的等价命名）。
 
 不用于：
 
-- 写跨项目个人原则；这类内容归用户级指令文件（`~/.agents/AGENTS.md`、`~/.zcode/AGENTS.md`、用户级 `CLAUDE.md`）或 rules。
+- 写跨项目个人原则；这类内容归用户级指令文件（用户级指令目录下的 `AGENTS.md` 等等价文件）或 rules。
 - 写多步骤方法；这类内容归 skill。
 - 推测业务规则、权限口径、部署策略或历史决策。
 
 ## 最小动作
 
-1. **确认现状**：项目根目录已有 `AGENTS.md`、`CLAUDE.md` 或其他等价指令文件时先读取，再让用户选择 `审查`、`补充` 或 `重写`；禁止默认合并或静默覆盖。目标文件优先级：项目既有指令文件 > 用户本次指定的文件名 > 默认 `AGENTS.md`。
+1. **确认现状**：项目根目录已有 `AGENTS.md` 或其他等价指令文件时先读取，再让用户选择 `审查`、`补充` 或 `重写`；禁止默认合并或静默覆盖。目标文件优先级：项目既有指令文件 > 用户本次指定的文件名 > 默认 `AGENTS.md`。
 2. **提取事实**：优先从构建文件、启动入口、开发脚本和主源码组织确认技术栈、启动方式、端口和高频模块。
 3. **标记未知**：业务边界、角色权限、生产部署、外部系统和历史决策没有明确证据时，列为待确认。
 4. **控制体积**：只保留高频事实。150 行是软性上下文预算（超出前必须先完成去重和外移长流程；它不是硬截断线，见「常见误用」表）；不删除会影响开发决策的已确认约束。
@@ -44,7 +44,7 @@ author: 蔡熙贝
 - {无法从仓库事实确认的信息}
 ```
 
-目标文件名不是 `AGENTS.md` 时（如项目沿用 `CLAUDE.md`），骨架标题同步替换为实际文件名，其余结构不变。
+目标文件名不是 `AGENTS.md` 时（如项目沿用其他既有命名），骨架标题同步替换为实际文件名，其余结构不变。
 
 ## 风险升级
 

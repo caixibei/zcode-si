@@ -14,7 +14,7 @@
 
 ## 工具
 
-优先调用会话中已注册的 sequential-thinking 类 MCP 工具（ZCode 环境下为 `mcp__sequentialthinking__sequentialthinking`；其他环境的工具名以实际注册为准，能力等价即可）。环境没有该 MCP 时，直接用文字分步推理，见文末「轮数弹性」的降级配合。
+优先调用会话中已注册的 sequential-thinking 类 MCP 工具（以会话实际注册的工具名为准，能力等价即可）。环境没有该 MCP 时，直接用文字分步推理，见文末「轮数弹性」的降级配合。
 
 常用参数：
 - `thought` — 当前推理步骤的内容
