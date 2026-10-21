@@ -10,6 +10,13 @@ metadata:
 
 # Archify Skill
 
+## Execution criteria (skill-wide) [S-ARC-01]
+
+- **Trigger**: when using this skill for the task described in its description.
+- **Action**: follow the steps, constraints, and output format in this skill; satisfy any write/Git/external-send/user-confirmation boundary before acting.
+- **Pass criteria**: all required inputs, steps, outputs/artifacts, and checks are complete, with locatable evidence; incomplete items are marked blocked.
+- **Failure/exception**: if prerequisites are missing, information is incomplete, or the user has not approved, pause and state the missing item; do not skip, fabricate, or report unverified work as complete.
+
 Create professional technical diagrams as self-contained HTML files with inline SVG, a theme toggle, and a built-in image/SVG export menu.
 
 Every renderer-backed diagram ships with a factual Diagram Guide for discovering its current actions and shortcuts, deterministic semantic node hooks, a counted two-kind Semantic Lens with selective inline legend entrances, a fine-pointer/keyboard Intent Trace before committed focus, a two-endpoint Route Probe over authored directed relationships, a searchable Node Finder, keyboard-accessible one-hop focus with a renderer-owned Semantic Passport and copyable deep link, a live Semantic Radar overview, an optional Named Chapter Rail with static Chapter Delta Preview, a native Story Beat Navigator with Story Follow Camera, Story Director Strip, and Story Horizon, and stable Shareable Story Moment links, a reader-controlled Live/Still Motion Governor for trace artifacts, a viewer-only Share Chapter Cue for one-shot embeds, Presentation Stage, dependency-free pan/zoom, a **dark/light theme toggle** (persists in `localStorage`, respects `prefers-color-scheme`), an **export menu** (create, copy, or download a 1200×630 Share Card; copy full-diagram PNG to clipboard; download PNG/JPEG/WebP rasterized natively at up to 4× resolution; download a **dual-theme SVG**; record a trace-enabled diagram to WebM), and a **CSS-variable color system** that keeps both themes consistent. Temporary Diagram Guide, Semantic Lens, legend preview, Intent Trace, Route Probe, finder, focus, radar, Chapter Delta Preview, Story Trail overlays, Story Director Strip, Story Horizon, beat state, guided-view, playback, presentation, motion-owner, and viewport state never changes the canonical full-diagram export.
@@ -22,7 +29,12 @@ Reading Depth progressively reveals renderer-owned context and fine detail as th
 
 Direct Relationship Pin makes every unique compiled relationship directly operable without changing the authored line. Give important `connections`, `edges`, `messages`, `flows`, and `transitions` an optional author-controlled `id` using the normal identifier pattern; IDs must be unique within their relationship collection. The renderer keeps its numeric `data-edge-key` for runtime de-duplication and emits the author identity separately as `data-edge-id`. At runtime, reject conflicting source/target/label/ID metadata and clone only path/line/polyline geometry into one viewer-owned overlay below nodes. Use a transparent 24px non-scaling stroke for hit testing plus a separate dashed focus rail; keep exactly one relationship button at `tabindex="0"` and move roving focus with all Arrow keys, Home, and End. Fine-pointer hover and keyboard focus reuse exact Relationship Preview transiently. Click, tap, Enter, or Space opens the source Semantic Passport and pins the exact existing Lens row. When the relationship has an authored ID, the pin writes `#relation=<id>`, changes the action to `Copy relation`, and restores the same source, target, label, path, and bounded camera after reordering; stale IDs fail closed. An ID-less legacy relationship remains an in-page pin, keeps `Copy node`, and never exposes its numeric key. The same relationship, a true background activation, Clear, or Escape clears it. `aria-pressed` conveys the pin while the source/target/label name stays stable. Touch never waits for hover, nodes win near endpoints, panning never activates a relation, and stronger Focus, Story, Route, Semantic Lens, Chapter, and embed states take priority. Do not add another panel, toolbar action, dependency, storage, or authored geometry. Remove all hit, pin, preview, and pulse state from embed, print, and canonical export; preserve the authored `data-edge-id` as semantic SVG identity.
 
-## Setup
+## Setup [S-ARC-02]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 No dependency installation is required. The distributed skill includes standalone validators compiled from all five JSON Schemas, so schema and layout validation work immediately after installation. The generated HTML and the renderer runtime are both dependency-free.
 
@@ -30,7 +42,12 @@ Run `node bin/archify.mjs doctor` to verify an installation. Run `node bin/archi
 
 If you have no shell access at all (e.g. the skill was added as project knowledge), fall back to architecture mode for every request: hand-place SVG into `assets/template.html` following the Design System below, and run the self-review checklist before delivering.
 
-## Choosing a Diagram Type
+## Choosing a Diagram Type [S-ARC-03]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 When the request is ambiguous, run `node bin/archify.mjs guide "<the user's scenario>"` before choosing a renderer. The bundled zero-dependency guide selects one of 11 bounded scenario recipes and returns the question answered, when to use or avoid it, required evidence, presentation settings, and a copy-ready prompt. `--json` provides the same contract for automation, and `--lang en|zh` overrides language detection. Use the recommendation as a starting point, then verify it against the user's actual question and repository evidence.
 
@@ -46,7 +63,12 @@ Every bundled scenario recipe is backed by a checked-in, validated example in `e
 
 Trigger phrases: "architecture/system/cloud diagram" → `architecture` (unless clearly process-oriented). "workflow/flow/process/runbook/approval/CI-CD/incident" → `workflow`. "sequence/interaction/call chain/who calls whom" → `sequence`. "data flow/pipeline/ETL/lineage/PII/governance" → `dataflow`. "state/status/lifecycle/state machine/retry/terminal" → `lifecycle`.
 
-## Mermaid as an Input Dialect
+## Mermaid as an Input Dialect [S-ARC-04]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 When the user pastes Mermaid code, do NOT try to render or parse it mechanically — read it for structure and **lay out from scratch** in the matching archify mode:
 
@@ -58,7 +80,12 @@ When the user pastes Mermaid code, do NOT try to render or parse it mechanically
 
 Drop Mermaid styling; keep only the topology and meaning. You choose grouping, lane order, and what deserves emphasis — that judgment is the product.
 
-## Layout principles (read before placing)
+## Layout principles (read before placing) [S-ARC-05]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 Archify's readability comes from **spatial narrative**, not from drawing every dependency as an arrow. Before you write coordinates or edge lists, plan one clear story:
 
@@ -72,7 +99,12 @@ Worked examples on this pattern: `examples/archify-repo.architecture.json` (this
 
 When validation fails on label overlap, read the **Suggested fix** lines (coordinates / `labelAt` / `labelDy`) and apply them directly — do not guess offsets blindly.
 
-## Renderer Modes (architecture / workflow / sequence / dataflow / lifecycle)
+## Renderer Modes (architecture / workflow / sequence / dataflow / lifecycle) [S-ARC-06]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 All five modes follow the same loop:
 
@@ -146,7 +178,7 @@ After Route Probe resolves, expose Route Journey over the existing ordered `acti
 
 Choose the authored `meta.visual_preset` with the user by audience, without changing diagram geometry: use `"signal-flow"` for a striking demo, launch graphic, or motion-forward presentation; use `"blueprint"` for deployment maps, design reviews, infrastructure handoffs, and drafting-style technical documentation; omit it (or use `"classic"`) for the stable default visual language. If the user has no preference, keep Classic rather than guessing. In the generated artifact, the reader may press <kbd>S</kbd> or use `Style` to try Classic, Flow, and Blueprint over the exact same topology; this session-only choice updates the canonical SVG and therefore deliberate exports, but never rewrites source JSON, persists a preference, changes the URL, or runs in a passive embed. Every preset supports both themes. WebM export appears only for trace-enabled diagrams and records six seconds directly in a supporting browser.
 
-### Workflow
+### Workflow [S-ARC-06.01]
 
 ```json
 {
@@ -170,7 +202,7 @@ Choose the authored `meta.visual_preset` with the user by audience, without chan
 
 **Layout budget**: 6 columns (`col` 0–5) at fixed x positions `[88, 220, 300, 430, 500, 625]` — columns 1↔2 and 3↔4 are only 70–80px apart, so default-width (92px) nodes in those adjacent columns of the same lane overlap; skip a column or shrink `width`. Lane content width is 640px. Omit `meta.viewBox` — the renderer sizes height to the lane count automatically. Use `phases` for top-of-diagram story beats, `groups` to frame parallel work or a branch inside one lane, and `lane.variant: "exception"` for error/retry/fallback lanes. `mainPath` is optional but recommended: list the happy-path node ids in order so the renderer can catch missing edges or accidental backward movement. Edge routes: `straight`, `drop` (bend between lanes; `bias` 0–1 picks where), `outside-right`, `return-left`, `bottom-channel`, `up-channel`, or explicit `via` points. Keep adjacent-step edges unlabeled; reserve labels for cross-lane transitions, approvals, async traces, and returns.
 
-### Sequence
+### Sequence [S-ARC-06.02]
 
 ```json
 {
@@ -193,7 +225,7 @@ Choose the authored `meta.visual_preset` with the user by audience, without chan
 
 **Layout budget**: participants sit at x = 62 + index×108, so a 920-wide viewBox fits at most 8. Message `y` must stay within `[160, viewBox_height − 83]`; messages that share horizontal space need ≥28px vertical separation; arrows need ≥60px horizontal span. `segments[].from/to` and `activations[].from/to` are **y pixel coordinates**, not participant ids. A taller `meta.viewBox` (default `[920, 760]`) buys more timeline room. Keep labels short: "GET /path", "verify JWT", "cache miss", "200 JSON".
 
-### Dataflow
+### Dataflow [S-ARC-06.03]
 
 ```json
 {
@@ -214,7 +246,7 @@ Choose the authored `meta.visual_preset` with the user by audience, without chan
 
 **Layout budget**: 2–5 stages at x = 100 + stage×215; 5 rows (`row` 0–4) at y `[128, 242, 356, 470, 584]`; default node 112×58. Default viewBox `[940, 720]`. Flow labels are mandatory and asset-like ("clickstream", "identity map", "feature vectors"); put sensitivity in `classification` ("PII touch", "approved only", "non-PII"). Variants: `emphasis` = primary path, `security` = PII/policy/consent, `dashed` = async/batch.
 
-### Lifecycle
+### Lifecycle [S-ARC-06.04]
 
 ```json
 {
@@ -243,11 +275,16 @@ Choose the authored `meta.visual_preset` with the user by audience, without chan
 
 **Layout budget — lane ids are semantic and reserved**: `main` is required and maps to the top phase band (cols 0–4); `terminal` maps to the bottom outcome band (cols 0–2); **every other lane id shares the single middle event band** (cols 0–2) — separate same-band states with different `col` or `yOffset`. Band headers render from your lane labels. Default viewBox `[980, 660]`. Keep transition labels event-like and sparse ("retry", "timeout", "cancel"); prefer state `tag`s, `step` numbers, and summary cards over label-heavy arrows. Put terminal states in the `terminal` lane so endings are unambiguous.
 
-### Per-mode deep guidance
+### Per-mode deep guidance [S-ARC-06.05]
 
 Each renderer has a README with its full design language (route presets, semantic types, story guidance): `renderers/workflow/README.md`, `renderers/sequence/README.md`, `renderers/dataflow/README.md`, `renderers/lifecycle/README.md`. Read the matching one before your first diagram of that mode in a session.
 
-## Architecture Mode
+## Architecture Mode [S-ARC-07]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 Architecture has the same read-schema-then-render loop as the other modes — prefer it. Hand-placed SVG is the fallback for when renderers can't run.
 
@@ -307,11 +344,11 @@ Output includes component rects, boundaries, connection point paths, and label p
 - **Connections** route like edges (`variant`, `fromSide`/`toSide`, `route: straight|orthogonal-h|orthogonal-v|auto`, `via`, `labelDx/labelDy/labelAt`). Architecture `auto` preserves the original H-V-H dogleg when it is clear and tries the complementary in-bounds V-H-V dogleg only when the first would cross an unrelated component; eligible shared automatic endpoints use the bounded Automatic Port Spread rule above, while explicit routing is never rewritten. For a vertical labeled connection, push the label into the gap with `labelDy` (the validator will tell you if it lands on a box).
 - The renderer auto-emits the two-rect `c-mask` pattern, draws arrows before boxes (z-order), builds the legend from the component types you used, and **fails fast on component overlap, off-canvas components/boundaries, unknown wraps/connection ids, label-vs-component collisions, and non-finite coordinates** — the same reliability the other four modes already had.
 
-### Hand-placed fallback (no renderer available)
+### Hand-placed fallback (no renderer available) [S-ARC-07.01]
 
 When Node/ajv can't run, copy `assets/template.html` and place SVG by hand. Study the worked diagram inside the template and `examples/web-app-rendered.html` for coordinate idioms, follow the Design System below, and run the self-review checklist before delivering.
 
-### The Cardinal Rule: CSS classes, not inline colors
+### The Cardinal Rule: CSS classes, not inline colors [S-ARC-07.02]
 
 The theme toggle works by switching CSS custom properties. Hardcoded `fill="rgba(...)"` or `stroke="#22d3ee"` will NOT update on theme change. Always use the class system:
 
@@ -322,7 +359,7 @@ The theme toggle works by switching CSS custom properties. Hardcoded `fill="rgba
 <text x="CX" y="CY+16" class="t-muted" font-size="9" text-anchor="middle">FastAPI :8000</text>
 ```
 
-### Design system
+### Design system [S-ARC-07.03]
 
 Component fills `c-frontend` (clients/UI), `c-backend` (services/APIs), `c-database` (stores/caches), `c-cloud` (managed infra), `c-security` (auth/secrets), `c-messagebus` (Kafka/queues), `c-external` (3rd parties); text accents `t-<same>` plus neutrals `t-primary` / `t-muted` / `t-dim`. Arrows `a-default`, `a-emphasis` (hot path), `a-security` (dashed), `a-dashed` (async) — always set `stroke-width` and pair `marker-end="url(#arrowhead[-variant])"` with the matching class. Boundaries: `c-security-group` (dashed rose), `c-region` (dashed amber), `c-lane` (swimlane).
 
@@ -330,7 +367,12 @@ Renderer-backed nodes automatically receive one small inline SVG Semantic Sigil 
 
 Typography inherits JetBrains Mono from the SVG root. Sizes: 11–12px component names, 9px sublabels, 8px annotations, 7px tiny labels.
 
-### Hard layout rules
+### Hard layout rules [S-ARC-07.04]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 - **Two-rect pattern everywhere**: opaque `c-mask` rect first, styled `c-<type>` rect on top — semi-transparent fills otherwise let arrows bleed through.
 - **Arrows before components** in document order (SVG paints in order; arrows must sit behind boxes).
@@ -340,7 +382,12 @@ Typography inherits JetBrains Mono from the SVG root. Sizes: 11–12px component
 - **Boundary padding**: boundary `y` = inner `y` − 30, boundary `height` = inner `height` + 50, label baseline 18px below the boundary top.
 - **Legend placement**: outside ALL boundary boxes, ≥20px below the lowest one; grow the viewBox if needed.
 
-### Self-review checklist (run before delivering)
+### Self-review checklist (run before delivering) [S-ARC-07.05]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 1. `grep -E 'fill="(#|rgb)|stroke="(#|rgb)' out.html` inside the SVG returns nothing except the template's own defs (Cardinal Rule).
 2. Every `c-<type>` rect has an identical-geometry `c-mask` rect immediately before it.
@@ -349,7 +396,9 @@ Typography inherits JetBrains Mono from the SVG root. Sizes: 11–12px component
 5. Legend y is below every boundary's y + height.
 6. The `.toolbar`, `.diagram-nav`, `.overview-map`, `.semantic-lens`, `.route-probe`, `.intent-trace-status`, `<script>` blocks, and `:root` / `[data-theme]` CSS are untouched — they ARE the theme, Semantic Lens, Intent Trace, Route Probe, Node Finder, Semantic Radar, Presentation Stage, interaction, and export runtime.
 
-### Perceptual delivery gate
+### Perceptual delivery gate [S-ARC-07.06]
+
+> Trigger: when producing or reviewing the rendered deliverable's visual quality.
 
 Treat the first render as a candidate, not an automatic final result. After deterministic render, validate, and artifact checks pass, inspect the final browser artifact and a canonical raster export when an image reader is available. Check clipping, text fit, hierarchy, whitespace, misleading routes, label placement, and dark/light readability. Make a maximum of two focused correction rounds; change only the diagnosed coordinates, labels, routes, spacing, or viewBox, then rerun render, validate, and check after every round.
 
@@ -365,6 +414,11 @@ correction_rounds: 0
 
 When no browser or image reader is available, report `visual_review: skipped (image reader unavailable)` and still report the real correction count. Never report `visual_review: passed` without inspecting the final rendered pixels. Do not start an unbounded aesthetic loop, and do not use visual judgment to override a deterministic failure.
 
-## Output
+## Output [S-ARC-08]
+
+> Trigger: when executing this section.
+> Action: follow this section's steps, constraints, and examples; satisfy user-confirmation/write/external-call prerequisites first.
+> Pass criteria: this section's required steps, outputs, or checks are complete and locatable; incomplete items are marked blocked.
+> Failure/exception: if prerequisites are missing or information is incomplete, pause and state the missing item; do not skip or fabricate.
 
 A single self-contained `.html`: embedded CSS (Google Fonts loads async and degrades to system monospace offline), one canonical inline SVG, and embedded JS for Intent Trace, Route Probe, Node Finder, Semantic Passport, runtime-built Semantic Radar, Presentation Stage, Story Trail playback, semantic focus, pan/zoom, theme, and export. It renders directly in any modern browser. Every semantic node has a deterministic DOM ID, accessible keyboard control, renderer-owned kind/responsibility/context attributes, and a compact native `<title>` tooltip; the SVG root includes its own `<title>` and `<desc>`. The viewer footer may link to Archify's bounded start page using only the diagram type; it must never serialize the title, semantic graph, repository path, or source JSON, must suppress the document referrer, and stays outside print and every canonical export. Raster exports render natively at up to 4× the viewBox (large diagrams step down to 3×/2× to stay under canvas limits); the SVG download is dual-theme self-contained and follows the host's `prefers-color-scheme` (manual override via `svg[data-theme="..."]`); trace-enabled diagrams can be recorded to WebM without external tooling.
