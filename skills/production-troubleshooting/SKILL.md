@@ -5,6 +5,8 @@ description: Evidence-first, read-only production incident investigation. Use wh
 
 # Production Troubleshooting
 
+> 防循环：本文件全部命令与工具调用受 `~/.zcode/AGENTS.md`「工具调用防循环（硬规则）」[R-AGT-15] 约束；同一命令最多执行 2 次，无新信息即改道。
+
 ## 执行判据（本技能通用） [S-PTS-01]
 
 - **触发条件**：使用本技能处理其 description 所述任务时。
@@ -19,6 +21,11 @@ description: Evidence-first, read-only production incident investigation. Use wh
 把生产问题从“猜测”收敛到“有证据的根因”，并在用户批准前保持只读。适用于 HTTP 接口、定时任务、消息消费者、邮件/短信通知、数据异常、前后端联调、多端行为不一致等生产问题。
 
 不适用于：单纯解释代码、执行已知方案、功能开发。但“验证修复”阶段仍适用。
+
+> 触发条件：接到生产问题排查请求时。
+> 动作要求：先取证后下结论，用户批准前保持只读。
+> 判断标准：已对最可能假设做至少一次反驳，且每条结论可定位到日志/SQL/代码/配置证据。
+> 失败或例外处理：证据不足时标注「未验证」及下一步验证动作，不得给出确定性根因。
 
 ## 硬约束 [S-PTS-03]
 

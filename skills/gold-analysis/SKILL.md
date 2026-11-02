@@ -15,6 +15,8 @@ metadata:
 
 # Gold Analysis Skill
 
+> 防循环：本文件全部命令与工具调用受 `~/.zcode/AGENTS.md`「工具调用防循环（硬规则）」[R-AGT-15] 约束；同一命令最多执行 2 次，无新信息即改道。
+
 黄金投资分析 Skill，提供实时价格、技术面和基本面分析。
 
 ## 执行判据 [S-GLD-01]
@@ -33,11 +35,20 @@ metadata:
 
 > 💡 使用前请确保已配置 TAVILY_API_KEY 环境变量。
 
+验证方式示例：执行 `node -e "console.log(process.env.TAVILY_API_KEY ? 'present' : 'missing')"`，输出 `missing` 时停止查询并按「失败或例外处理」说明阻断，不得改用记忆中的价格。
+
 ## 数据来源
 
 使用 Tavily API 搜索获取黄金相关信息：
 ```bash
 node {baseDir}/scripts/search-gold.mjs <query> [--type price|news|technical]
+```
+
+调用示例（三类各一）：
+```bash
+node {baseDir}/scripts/search-gold.mjs "黄金 今日 价格 美元 盎司" --type price
+node {baseDir}/scripts/search-gold.mjs "黄金 RSI MACD 支撑位 阻力位" --type technical
+node {baseDir}/scripts/search-gold.mjs "美联储 利率 央行 购金" --type news
 ```
 
 ## 功能模块
@@ -47,10 +58,14 @@ node {baseDir}/scripts/search-gold.mjs <query> [--type price|news|technical]
 - 国内金价：人民币/克
 - 支撑位 / 阻力位
 
+输出示例（数值取自本次搜索结果，不得沿用示例占位值）：`国际金价 <X> 美元/盎司（日内 <低>–<高>）｜国内金价 <Y> 元/克｜支撑 <S>｜阻力 <R>｜数据时间 <抓取时间>`。搜索摘要未给出具体数值时，写「本次搜索未返回该字段」，不得用区间或常识估算填充。
+
 ### 2. 技术指标分析
 - RSI（相对强弱指数）：判断超买超卖
 - MACD（指数平滑异同移动平均线）：判断趋势
 - 移动平均线：金叉死叉信号
+
+判读示例：`RSI <N>（>70 超买区 / <30 超卖区 / 其间中性）`、`MACD 快线 <a> 与慢线 <b> 呈 <金叉|死叉|粘合>，柱状 <放大|收窄|转负>`、`MA5 <m5> 相对 MA20 <m20> 呈 <上穿|下穿|并行>`。三项结论必须分别标注数据来源时间；只有一项可用时只报该项并说明其余字段缺失。
 
 详见 [technical-indicators.md](references/technical-indicators.md)
 
@@ -67,6 +82,19 @@ node {baseDir}/scripts/search-gold.mjs <query> [--type price|news|technical]
 2. **技术面** - 关键指标及信号
 3. **基本面** - 主要影响因素
 4. **风险提示** - 注意事项
+
+完整骨架示例：
+```
+## 价格概览
+国际金价 <X> 美元/盎司（日內 <低>–<高>）；国内金价 <Y> 元/克；数据时间 <抓取时间>
+## 技术面
+RSI <N>（<区间判定>）；MACD <形态>；MA5/MA20 <关系>
+## 基本面
+<因素 1>：<影响方向与依据>；<因素 2>：<影响方向与依据>
+## 风险提示
+<本次数据缺口、时效性限制、非投资建议声明>
+```
+占位符必须替换为本次搜索得到的数值或「未返回」；不得保留尖括号占位符直接交付。
 
 ## 使用示例
 
