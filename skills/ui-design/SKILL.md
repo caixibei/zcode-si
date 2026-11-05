@@ -43,15 +43,15 @@ author: 蔡熙贝
 > 判断标准：方案对比表含 ≥2 个备选且推荐附理由；令牌源与目标前端匹配，未套用其他前端的尺寸体系。
 > 失败或例外处理：无法确认目标前端时暂停并向用户确认，不得猜测令牌源。
 
-1. **确认目标前端** - 一个项目可能有多个前端（主系统、微前端、移动端），各自的 UI 框架和令牌源不同，先确认改的是哪个。通用判断方法：看页面所在目录 + `package.json` 的依赖确定 UI 框架，再按框架找主题令牌源。以本项目（bp-lims）为例：
+1. **确认目标前端** - 一个项目可能有多个前端（主系统、微前端、移动端），各自的 UI 框架和令牌源不同，先确认改的是哪个。通用判断方法：看页面所在目录 + `package.json` 的依赖确定 UI 框架，再按框架找主题令牌源。示例（框架与令牌源的对应关系，非具体项目模块）：
 
-   | 目标前端 | 框架 | 令牌源 |
-   |---------|------|--------|
-   | hussar-front | Element UI 2.15 | Element UI 主题变量 + 项目全局 SCSS/Less |
-   | eln-microapp | Element Plus | Element Plus 主题变量 + Vite 配置 |
-   | hussar-mobile / hussar-mobile-wx | Vant / Element UI | Vant 主题变量 + 移动端样式 |
+   | 框架 | 令牌源 |
+   |------|--------|
+   | Element UI | Element UI 主题变量 + 项目全局 SCSS/Less |
+   | Element Plus | Element Plus 主题变量 + Vite 配置 |
+   | Vant | Vant 主题变量 + 移动端样式 |
 
-   换到其他项目时，按「页面目录 -> package.json 依赖 -> 框架主题变量位置」自行定位令牌源（Element UI/Plus 看 `theme-chalk` 覆盖和全局 SCSS；Ant Design 看 ConfigProvider token；Vant 看 `ConfigProvider` 主题变量）。无法从页面目录、package.json 依赖或框架文档确认令牌源位置时，向用户确认。令牌提取必须按目标前端切换，不能给 Vant 页面套 Element UI 的尺寸体系。
+   具体项目的模块名、框架版本与令牌文件位置以项目级 `AGENTS.md` 和 `package.json` 为准。按「页面目录 -> package.json 依赖 -> 框架主题变量位置」自行定位令牌源（Element UI/Plus 看 `theme-chalk` 覆盖和全局 SCSS；Ant Design 看 ConfigProvider token；Vant 看 `ConfigProvider` 主题变量）。无法从页面目录、package.json 依赖或框架文档确认令牌源位置时，向用户确认。令牌提取必须按目标前端切换，不能给 Vant 页面套 Element UI 的尺寸体系。
 
 2. **提取现有设计令牌** - 从目标前端的样式定义中提取：
    - 主题色（primary / success / warning / danger）
