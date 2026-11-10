@@ -36,6 +36,7 @@ description: Evidence-first, read-only production incident investigation. Use wh
 5. **批准前不改代码**：分析阶段只输出结论、证据、风险和方案；用户明确批准后才进入修复。
 6. **脱敏**：不输出密码、Token、Cookie、连接串、客户邮箱/手机号、身份证号等；日志中的敏感值用占位符。
 7. **多入口逐项核查**：涉及多个 Controller/Service/前端事件/定时任务时，逐个列出路径、行号、触发条件和结果；未核查的标为“未覆盖”。
+8. **亲读优先**：引用任何代码行号前必须用 Read/Grep 亲自打开目标文件确认当前内容；子代理转述、历史会话记忆、文档描述提供的行号不得直接引用，未经亲读核实的按「未验证：[来源未亲读]」标注。
 
 ## 分析纪律（整合 deep-brainstorming 的可靠经验） [S-PTS-04]
 
