@@ -174,6 +174,9 @@ author: 蔡熙贝
 | 给嵌套容器内的元素添加 CSS padding 时未检查父容器 padding | 子元素 padding 与父容器 padding 水平叠加，内容偏移量为两者之和，起始位置偏右或偏下 | 编辑 padding 前先用 DevTools 计算目标元素的 `padding-left`/`padding-right`（含继承值）；若父容器已提供水平 padding，子元素只设垂直 padding 或设为 `0`；验证标准：修改后目标元素内容的 `getBoundingClientRect().left` 与同级参考元素差值 <1px |
 | `console.log`/`console.info` 调试输出残留在最终交付代码 | 生产环境暴露内部数据结构、拖累运行性能，且无级别与采集通道 | 交付前移除或改用项目日志/错误上报封装；验证标准：本次交付文件中检索 `console.log`、`console.info`、`console.debug` 命中为 0，有用户确认的保留项时逐处列明 |
 | 页面残留未使用的变量、import、data 字段、computed 或 CSS 选择器 | 构建产物冗余，维护者误判其仍在参与渲染或业务逻辑 | 交付前删除本次修改触及文件中的未使用声明；模板动态引用或框架约定无法静态确认时保留并逐项列明。验证标准：本次修改文件无未使用声明残留，或每处均有排除依据。权威定义见 `~/.zcode/rules/engineering-core.md`「不合理代码残留整改（强制）」 |
+| 合并列或可跨列复用的列同时使用固定 `width` 与 `show-overflow-tooltip` | 组件库按 `realWidth - 1` 写内联宽度；固定宽列 `realWidth` 为 `null` 时算得 `-2px`，浏览器 CSSOM 忽略非法赋值，复用 DOM 保留上一列上一次的合法宽度，文字按相邻列宽居中压进相邻列（间歇性，与翻页/刷新顺序相关） | 合并列与可复用列不开启 `show-overflow-tooltip`，需要省略时用 `nowrap + ellipsis`；先按 `~/.zcode/rules/frontend.md`「列配置组合禁忌」[R-FRO-02.03] 核对；验证标准：该列内容容器的 `style.width` 为空或为正，翻页/改页大小/查询刷新后文字仍在本列内容区 |
+| 用 `row-key`、强制重建表格（`key` 绑定页码）、`doLayout` 或 `!important` 修复间歇性错位 | 症状消失但非法内联宽度来源仍在，数据部分重叠刷新或合并结构变化时复发；`row-key` 键的唯一性未逐视图验证时还会引入行身份冲突 | 先按 `~/.zcode/rules/frontend.md`「间歇性渲染错位诊断顺序」[R-FRO-02.02] 取 DOM 与源码证据再修根因；兜底手段须标明「根因未消除」并证明键字段在各视图的返回范围与唯一性 |
+| 把项目内既有注释的因果解释当作机制依据 | 旧注释可能来自上一轮误判，被继承后放大错误结论 | 注释只作线索：回到当前版本源码与运行时核实；与事实不一致时按「触及」口径更新或删除，未触及项列入交付「后续建议」 |
 
 > Vue 数据响应式与状态管理规范见 `~/.zcode/rules/frontend.md`「响应式与状态」；本表为陷阱速查。
 
