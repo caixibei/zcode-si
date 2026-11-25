@@ -1,7 +1,7 @@
 ---
 description: 版本控制纪律
 priority: high
-author: 蔡熙贝
+author: Alden
 ---
 
 # 版本控制纪律

@@ -1,7 +1,7 @@
 ---
 description: 交付结构模板
 priority: high
-author: 蔡熙贝
+author: Alden
 ---
 
 # 交付规范

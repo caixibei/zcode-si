@@ -1,7 +1,7 @@
 ---
 description: Subagent 约束
 priority: high
-author: 蔡熙贝
+author: Alden
 ---
 
 # Subagent 约束

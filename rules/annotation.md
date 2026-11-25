@@ -1,7 +1,7 @@
 ---
 description: 业务注释强制规则 - 所有代码修改自动触发
 priority: high
-author: 蔡熙贝
+author: Alden
 ---
 
 # 业务注释要求（绝对强制）

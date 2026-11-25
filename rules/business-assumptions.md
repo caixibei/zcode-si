@@ -1,7 +1,7 @@
 ---
 description: 业务假设与数据验证规范
 priority: high
-author: 蔡熙贝
+author: Alden
 ---
 
 # 业务假设与数据验证规则
