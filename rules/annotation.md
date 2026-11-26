@@ -245,7 +245,7 @@ if (eligibilityPolicy.isEligible(record.getState(), availableValue)) {
 6. **关键术语**：业务概念首次出现时用 `<b>` 加粗强调。
 7. **块标签**：API 方法使用 `@param`、`@return`、`@throws`；业务方法可省略。
 8. **行内注释**：按文件语法编写，Java 使用 `//` 或 `/** */`，MyBatis XML 使用 `<!-- -->`，SQL 使用 `--` 或 `/* ... */`，Vue / JavaScript 使用 `//` 或 `/** */`；内容标准见下方「业务注释检查清单」与「逻辑段落清单」。
-9. **作者标注**：`@author` 只允许写在 Java 顶层类型的类级 Javadoc 中。新增或本次编辑涉及的顶层 `class`、`interface`、`enum`、`@interface`，以及项目 JDK 支持时的 `record`，类级 Javadoc 不能缺少 `@author`：优先使用用户本次指定或项目明确约定的作者；没有其他已确认作者时使用用户级默认值 `Alden`（该默认值可被前两级覆盖，见本文件「Javadoc 块标签预查与 CRUD」[R-ANN-05.05]）。已有一个或多个合法作者时不追加 `Alden`，不同作者全部保留，仅删除去除首尾空白后内容完全相同的重复项；不得擅自替换历史作者。
+9. **作者标注**：`@author` 只允许写在 Java 顶层类型的类级 Javadoc 中；新增或本次编辑涉及的顶层类型（`class`、`interface`、`enum`、`@interface`，JDK 支持时的 `record`）类级 Javadoc 不能缺少 `@author`。取值优先级、默认值 `Alden`、不追加、多作者保留与去重、不得替换历史作者的完整规则见本文件「Javadoc 块标签预查与 CRUD」[R-ANN-05.05]。
 10. **示例稳定性**：全局规则示例不得固化项目专属表名、角色 ID、状态码、字段名或接收对象；应使用通用业务术语表达来源、口径和结果去向，具体契约留在项目规则或业务代码中。
 
 ## MyBatis XML SQL 注释规范 [R-ANN-06]

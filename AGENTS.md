@@ -157,7 +157,7 @@
 3. **数据库调用逐项实查** - 每个 Mapper/DAO/Service 查询或写入均须按 `~/.zcode/rules/annotation.md`「数据库调用注释的 6 个要素」逐项说明，并补全“读取 → 转换/装配 → 写入或后续调用”的数据流；不得以“查询/保存/处理”机械复述替代
 4. **业务注释与代码变更在同一次 Edit/Write 中写入** - 禁止分两次编辑
 5. **执行编辑后复查（DoD）** - 重读修改后的方法，确认每个新增注释与对应代码行为一致；发现不一致时在同次编辑中修正注释或代码，二者必须同步收敛。
-6. **执行 Java 标签预查** - 编辑任何 Java 文件前完整读取目标文件并盘点现有 Javadoc 块标签；新增或本次编辑涉及的 Java 顶层类型（`class`、`interface`、`enum`、`@interface`，source/target 为 16 及以上时的 `record`，以 `pom.xml` 或 `build.gradle` 编译目标为准）的类级 Javadoc 必须至少含一个 `@author`，取值优先级为用户本次指定 → 项目明确约定 → 用户级默认值 `Alden`（仅前两级均不存在时生效，可被项目级 `AGENTS.md` 或本次指定覆盖）；已有合法作者不追加 `Alden`，不同作者均保留，仅删标签名与内容去空白后逐字一致的重复项。其余标签按 `~/.zcode/rules/annotation.md` 执行保留、更新、新增、删除与顺序审查；不得保留未登记的 `@date` 等非标准标签，也不得把日期机械转为 `@since`。
+6. **执行 Java 标签预查** - 编辑任何 Java 文件前完整读取目标文件并盘点现有 Javadoc 块标签；新增或本次编辑涉及的 Java 顶层类型（`class`、`interface`、`enum`、`@interface`，source/target 为 16 及以上时的 `record`，以 `pom.xml` 或 `build.gradle` 编译目标为准）的类级 Javadoc 必须至少含一个 `@author`，无其他已确认作者时使用用户级默认值 `Alden`；标签 CRUD、作者优先级与去重规则按 `~/.zcode/rules/annotation.md`「Javadoc 块标签预查与 CRUD」[R-ANN-05.05] 执行；不得保留未登记的 `@date` 等非标准标签，也不得把日期机械转为 `@since`。
 
 **适用范围**：第 6 步为 Java 项目专属；非 Java 项目按 `~/.zcode/rules/annotation.md`「核心原则」[R-ANN-01] 与项目主语言的注释标准执行，不适用 Javadoc 标签预查；无法判断项目主语言时按项目级 `AGENTS.md` 或主要源码后缀判断并在交付中说明依据。
 
